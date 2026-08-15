@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   Award,
   BarChart3,
@@ -169,9 +170,12 @@ export default function HomePage() {
               {/* Image */}
               <div className="rounded-[25px] border border-[#eadfd4] bg-[#f8eee4] p-2.5 shadow-[0_18px_45px_rgba(45,38,30,0.08)]">
 
-                <img
+                <Image
                   src="/nivo-city.png"
                   alt="Nivo City"
+                  width={960}
+                  height={960}
+                  priority
                   className="block aspect-square w-full rounded-[19px] object-cover"
                 />
 

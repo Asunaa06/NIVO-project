@@ -5,12 +5,12 @@ import { useEffect, useMemo, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 import { BookOpen, Check, ChevronLeft, Compass } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
-import { fetchSubjectData, type LessonRecord } from "@/lib/supabase/data"
+import { fetchSubjectData, type LessonRecord, type SubjectRecord } from "@/lib/supabase/data"
 
 export default function SubjectPage() {
   const params = useParams<{ id: string }>()
   const router = useRouter()
-  const [subject, setSubject] = useState<any>(null)
+  const [subject, setSubject] = useState<SubjectRecord | null>(null)
   const [lessons, setLessons] = useState<LessonRecord[]>([])
   const [loading, setLoading] = useState(true)
 
