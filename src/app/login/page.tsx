@@ -7,6 +7,11 @@ import { useRouter } from "next/navigation"
 import { Mail, Lock, Eye, EyeOff, ArrowLeft, Sparkles } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 
+function safeRedirectTarget(target: string | null) {
+  if (!target || !target.startsWith("/") || target.startsWith("//")) return "/dashboard"
+  return target
+}
+
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -15,7 +20,6 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   const router = useRouter()
-  const supabase = createClient()
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -23,6 +27,7 @@ export default function LoginPage() {
     setLoading(true)
 
     try {
+      const supabase = createClient()
       const { data, error: signInError } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -44,8 +49,11 @@ export default function LoginPage() {
         setEmail("")
         setPassword("")
         // إعادة التوجيه إلى الصفحة الرئيسية بعد ثانية
+        const destination = safeRedirectTarget(
+          new URLSearchParams(window.location.search).get("redirectTo")
+        )
         setTimeout(() => {
-          router.push("/dashboard")
+          router.replace(destination)
         }, 1000)
       }
     } catch (err) {

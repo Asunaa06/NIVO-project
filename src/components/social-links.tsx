@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { Send, Music } from "lucide-react"
 
 export function SocialLinks() {
