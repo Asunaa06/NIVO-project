@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --background: #fcf5ee;
+  --foreground: #242b38;
+  --card: #ffffff;
+  --card-foreground: #242b38;
+  --popover: #ffffff;
+  --popover-foreground: #242b38;
+  --primary: #d9752e;
+  --primary-foreground: #ffffff;
+  --secondary: #242b38;
+  --secondary-foreground: #ffffff;
+  --muted: #f3e9dd;
+  --muted-foreground: #6f6559;
+  --accent: #8b5cf6;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --border: #e8dccb;
+  --input: #e8dccb;
+  --ring: #d9752e;
+  --chart-1: #d9752e;
+  --chart-2: #8b5cf6;
+  --chart-3: #242b38;
+  --chart-4: #f0a35e;
+  --chart-5: #b7e5a1;
+  --radius: 0.875rem;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #1a1a1a;
+  --card-foreground: #ffffff;
+  --popover: #1a1a1a;
+  --popover-foreground: #ffffff;
+  --primary: #d9752e;
+  --primary-foreground: #000000;
+  --secondary: #404040;
+  --secondary-foreground: #ffffff;
+  --muted: #404040;
+  --muted-foreground: #a0a0a0;
+  --accent: #8b5cf6;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --border: #404040;
+  --input: #404040;
+  --ring: #d9752e;
+  --chart-1: #d9752e;
+  --chart-2: #8b5cf6;
+  --chart-3: #ffffff;
+  --chart-4: #f0a35e;
+  --chart-5: #b7e5a1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color-scheme: dark;
+    --background: #000000;
+    --foreground: #ffffff;
+    --card: #1a1a1a;
+    --card-foreground: #ffffff;
+    --popover: #1a1a1a;
+    --popover-foreground: #ffffff;
+    --primary: #d9752e;
+    --primary-foreground: #000000;
+    --secondary: #404040;
+    --secondary-foreground: #ffffff;
+    --muted: #404040;
+    --muted-foreground: #a0a0a0;
+    --accent: #8b5cf6;
+    --accent-foreground: #ffffff;
+    --destructive: #ef4444;
+    --border: #404040;
+    --input: #404040;
+    --ring: #d9752e;
+    --chart-1: #d9752e;
+    --chart-2: #8b5cf6;
+    --chart-3: #ffffff;
+    --chart-4: #f0a35e;
+    --chart-5: #b7e5a1;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+/* قسم هيرو تعديل */
+@layer utilities {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+}
