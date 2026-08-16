@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   Award,
   BarChart3,
@@ -26,26 +27,26 @@ export default function HomePage() {
         <div className="mx-auto flex h-[64px] max-w-[1400px] items-center justify-between px-5">
 
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <span className="text-[20px] font-black">Nivo</span>
 
             <span className="flex h-[27px] w-[27px] items-center justify-center rounded-full bg-[#df762f] text-[14px] font-black text-white">
               N
             </span>
-          </a>
+          </Link>
 
           {/* Navigation */}
           <nav className="flex items-center gap-7 text-[14px] text-[#77736e]">
 
-            <a href="#" className="transition hover:text-[#202737]">
+            <a href="#features" className="transition hover:text-[#202737]">
               المميزات
             </a>
 
-            <a href="#" className="transition hover:text-[#202737]">
+            <a href="#method" className="transition hover:text-[#202737]">
               المنهجية
             </a>
 
-            <a href="#" className="transition hover:text-[#202737]">
+            <a href="#gamification" className="transition hover:text-[#202737]">
               التحفيز
             </a>
 
@@ -54,19 +55,19 @@ export default function HomePage() {
           {/* Actions */}
           <div className="flex items-center gap-4">
 
-            <a
+            <Link
               href="/login"
-              className="text-[13px] font-medium text-[#55514d]"
+              className="text-[13px] font-medium text-[#55514d] transition hover:text-[#202737]"
             >
               تسجيل الدخول
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/subscription"
-              className="rounded-full bg-[#df762f] px-4 py-2 text-[12px] font-bold text-white"
+              className="rounded-full bg-[#df762f] px-4 py-2 text-[12px] font-bold text-white transition hover:bg-[#c9661f]"
             >
               ابدأ الآن
-            </a>
+            </Link>
 
           </div>
 
@@ -120,16 +121,16 @@ export default function HomePage() {
             {/* Buttons */}
             <div className="mt-6 flex items-center gap-2">
 
-              <a
+              <Link
                 href="/subscription"
-                className="rounded-lg bg-[#df762f] px-4 py-2.5 text-[13px] font-bold text-white"
+                className="rounded-lg bg-[#df762f] px-4 py-2.5 text-[13px] font-bold text-white transition hover:bg-[#c9661f]"
               >
                 رحلتك نحو 20/20 تبدأ هنا
-              </a>
+              </Link>
 
               <a
                 href="#features"
-                className="rounded-lg border border-[#e5dbd2] bg-[#fffaf5] px-4 py-2.5 text-[13px] font-bold text-[#6f6a65]"
+                className="rounded-lg border border-[#e5dbd2] bg-[#fffaf5] px-4 py-2.5 text-[13px] font-bold text-[#6f6a65] transition hover:border-[#df762f] hover:text-[#202737]"
               >
                 اكتشف المميزات
               </a>
@@ -220,7 +221,10 @@ export default function HomePage() {
           FEATURES
       ===================================================== */}
 
-      <section id="features" className="mx-auto max-w-[1400px] px-5 pb-[100px]">
+      <section
+        id="features"
+        className="mx-auto max-w-[1400px] scroll-mt-[80px] px-5 pb-[100px]"
+      >
 
         <div className="mx-auto max-w-[600px] text-center">
 
@@ -242,6 +246,7 @@ export default function HomePage() {
 
           {/* أدراج ليتر */}
           <FeatureCard
+            href="/dashboard"
             icon={<Layers3 size={19} />}
             iconStyle="bg-[#eee9ff] text-[#8269c3]"
             title="أدراج ليتر"
@@ -251,6 +256,7 @@ export default function HomePage() {
 
           {/* المراجعة المتباعدة */}
           <FeatureCard
+            href="/dashboard"
             icon={<RefreshCw size={19} />}
             iconStyle="bg-[#fff0e6] text-[#df762f]"
             title="المراجعة المتباعدة"
@@ -260,6 +266,7 @@ export default function HomePage() {
 
           {/* المنظم الذكي */}
           <FeatureCard
+            href="/planner"
             icon={<CalendarDays size={19} />}
             iconStyle="bg-[#fff0e6] text-[#d99465]"
             title="المنظم الذكي"
@@ -269,6 +276,7 @@ export default function HomePage() {
 
           {/* مديرة الموارد */}
           <FeatureCard
+            href="/city"
             icon={<BarChart3 size={19} />}
             iconStyle="bg-[#e6f5ed] text-[#4d9b6e]"
             title="مديرة الموارد"
@@ -278,6 +286,7 @@ export default function HomePage() {
 
           {/* تقييم المصادر */}
           <FeatureCard
+            href="/lesson"
             icon={<Award size={19} />}
             iconStyle="bg-[#e6f5ed] text-[#4d9b6e]"
             title="تقييم المصادر"
@@ -287,6 +296,7 @@ export default function HomePage() {
 
           {/* إحصائيات دقيقة */}
           <FeatureCard
+            href="/statistics"
             icon={<LineChart size={19} />}
             iconStyle="bg-[#eee9ff] text-[#8269c3]"
             title="إحصائيات دقيقة"
@@ -302,7 +312,10 @@ export default function HomePage() {
           SCIENTIFIC METHOD
       ===================================================== */}
 
-      <section className="bg-[#222c3b] px-5 py-[70px] text-white">
+      <section
+        id="method"
+        className="scroll-mt-[64px] bg-[#222c3b] px-5 py-[70px] text-white"
+      >
 
         <div className="mx-auto max-w-[1400px]">
 
@@ -325,24 +338,28 @@ export default function HomePage() {
           <div className="mt-10 grid grid-cols-4 gap-4">
 
             <MethodCard
+              href="/city"
               number="1"
               title="ادرس الدرس"
               text="ابدأ درساً من مديرة المواد، وسجل وقت دراستك بالمؤقت الذكي."
             />
 
             <MethodCard
+              href="/lesson"
               number="2"
               title="قيّم إتقانك"
               text="بعد المراجعة، حدد سهل، متوسط، أو صعب — لضبط الجدولة القادمة."
             />
 
             <MethodCard
+              href="/dashboard"
               number="3"
               title="انتقل بين الأدراج"
               text="يرتفع الدرس درجة عند النجاح، فتتباعد المراجعات: 1، 2، 4، 7، 14، 30، 60 يوماً."
             />
 
             <MethodCard
+              href="/statistics"
               number="4"
               title="لن تنسى أبداً"
               text="تثبت المعلومات في الذاكرة طويلة المدى قبل موعد البكالوريا بأمان."
@@ -359,7 +376,10 @@ export default function HomePage() {
           GAMIFICATION / CTA
       ===================================================== */}
 
-      <section className="mx-auto max-w-[1400px] px-5 py-[75px]">
+      <section
+        id="gamification"
+        className="mx-auto max-w-[1400px] scroll-mt-[64px] px-5 py-[75px]"
+      >
 
         <div className="grid grid-cols-2 items-center gap-[70px]">
 
@@ -433,12 +453,12 @@ export default function HomePage() {
 
               </h3>
 
-              <a
+              <Link
                 href="/subscription"
-                className="mt-5 inline-flex rounded-lg bg-[#202a39] px-4 py-2.5 text-[12px] font-bold text-white"
+                className="mt-5 inline-flex rounded-lg bg-[#202a39] px-4 py-2.5 text-[12px] font-bold text-white transition hover:bg-[#151d29]"
               >
                 ابدأ مجاناً
-              </a>
+              </Link>
 
               <p className="mt-4 text-[11px] text-white/65">
                 التعلم الذكي يبدأ من هنا — لا تنسَ بعد اليوم.
@@ -508,20 +528,22 @@ function Stat({
 ========================================================= */
 
 function FeatureCard({
+  href,
   icon,
   iconStyle,
   title,
   text,
 }: {
+  href: string;
   icon: React.ReactNode;
   iconStyle: string;
   title: string;
   text: string;
 }) {
   return (
-    <a
-      href="#"
-      className="group min-h-[155px] rounded-[17px] border border-[#e7ddd4] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(40,35,30,0.07)]"
+    <Link
+      href={href}
+      className="group block min-h-[155px] rounded-[17px] border border-[#e7ddd4] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#df762f] hover:shadow-[0_12px_35px_rgba(40,35,30,0.07)]"
     >
 
       <div
@@ -538,7 +560,7 @@ function FeatureCard({
         {text}
       </p>
 
-    </a>
+    </Link>
   );
 }
 
@@ -548,16 +570,21 @@ function FeatureCard({
 ========================================================= */
 
 function MethodCard({
+  href,
   number,
   title,
   text,
 }: {
+  href: string;
   number: string;
   title: string;
   text: string;
 }) {
   return (
-    <div className="min-h-[170px] rounded-[15px] border border-white/[0.08] bg-[#2b3545] p-5">
+    <Link
+      href={href}
+      className="block min-h-[170px] rounded-[15px] border border-white/[0.08] bg-[#2b3545] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#e77b31]/60 hover:bg-[#333e51]"
+    >
 
       <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-[#e77b31] text-[13px] font-black">
         {number}
@@ -571,7 +598,7 @@ function MethodCard({
         {text}
       </p>
 
-    </div>
+    </Link>
   );
 }
 
