@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   Award,
   BarChart3,
@@ -22,30 +23,30 @@ export default function HomePage() {
           NAVBAR
       ===================================================== */}
 
-      <header className="border-b border-[#eadfd4] bg-[#fcf5ee]">
+      <header className="sticky top-0 z-50 border-b border-[#eadfd4] bg-[#fcf5ee]/95 backdrop-blur">
         <div className="mx-auto flex h-[64px] max-w-[1400px] items-center justify-between px-5">
 
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <span className="text-[20px] font-black">Nivo</span>
 
             <span className="flex h-[27px] w-[27px] items-center justify-center rounded-full bg-[#df762f] text-[14px] font-black text-white">
               N
             </span>
-          </a>
+          </Link>
 
           {/* Navigation */}
           <nav className="flex items-center gap-7 text-[14px] text-[#77736e]">
 
-            <a href="#" className="transition hover:text-[#202737]">
+            <a href="#features" className="transition hover:text-[#202737]">
               المميزات
             </a>
 
-            <a href="#" className="transition hover:text-[#202737]">
+            <a href="#method" className="transition hover:text-[#202737]">
               المنهجية
             </a>
 
-            <a href="#" className="transition hover:text-[#202737]">
+            <a href="#gamification" className="transition hover:text-[#202737]">
               التحفيز
             </a>
 
@@ -54,19 +55,19 @@ export default function HomePage() {
           {/* Actions */}
           <div className="flex items-center gap-4">
 
-            <a
+            <Link
               href="/login"
-              className="text-[13px] font-medium text-[#55514d]"
+              className="text-[13px] font-medium text-[#55514d] transition hover:text-[#202737]"
             >
               تسجيل الدخول
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/subscription"
-              className="rounded-full bg-[#df762f] px-4 py-2 text-[12px] font-bold text-white"
+              className="rounded-full bg-[#df762f] px-4 py-2 text-[12px] font-bold text-white transition hover:bg-[#c9661f]"
             >
               ابدأ الآن
-            </a>
+            </Link>
 
           </div>
 
@@ -120,16 +121,16 @@ export default function HomePage() {
             {/* Buttons */}
             <div className="mt-6 flex items-center gap-2">
 
-              <a
+              <Link
                 href="/subscription"
-                className="rounded-lg bg-[#df762f] px-4 py-2.5 text-[13px] font-bold text-white"
+                className="rounded-lg bg-[#df762f] px-4 py-2.5 text-[13px] font-bold text-white transition hover:bg-[#c9661f]"
               >
                 رحلتك نحو 20/20 تبدأ هنا
-              </a>
+              </Link>
 
               <a
                 href="#features"
-                className="rounded-lg border border-[#e5dbd2] bg-[#fffaf5] px-4 py-2.5 text-[13px] font-bold text-[#6f6a65]"
+                className="rounded-lg border border-[#e5dbd2] bg-[#fffaf5] px-4 py-2.5 text-[13px] font-bold text-[#6f6a65] transition hover:border-[#df762f] hover:text-[#202737]"
               >
                 اكتشف المميزات
               </a>
@@ -220,7 +221,10 @@ export default function HomePage() {
           FEATURES
       ===================================================== */}
 
-      <section id="features" className="mx-auto max-w-[1400px] px-5 pb-[100px]">
+      <section
+        id="features"
+        className="mx-auto max-w-[1400px] scroll-mt-[80px] px-5 pb-[100px]"
+      >
 
         <div className="mx-auto max-w-[600px] text-center">
 
@@ -302,7 +306,10 @@ export default function HomePage() {
           SCIENTIFIC METHOD
       ===================================================== */}
 
-      <section className="bg-[#222c3b] px-5 py-[70px] text-white">
+      <section
+        id="method"
+        className="scroll-mt-[64px] bg-[#222c3b] px-5 py-[70px] text-white"
+      >
 
         <div className="mx-auto max-w-[1400px]">
 
@@ -359,7 +366,10 @@ export default function HomePage() {
           GAMIFICATION / CTA
       ===================================================== */}
 
-      <section className="mx-auto max-w-[1400px] px-5 py-[75px]">
+      <section
+        id="gamification"
+        className="mx-auto max-w-[1400px] scroll-mt-[64px] px-5 py-[75px]"
+      >
 
         <div className="grid grid-cols-2 items-center gap-[70px]">
 
@@ -433,12 +443,12 @@ export default function HomePage() {
 
               </h3>
 
-              <a
+              <Link
                 href="/subscription"
-                className="mt-5 inline-flex rounded-lg bg-[#202a39] px-4 py-2.5 text-[12px] font-bold text-white"
+                className="mt-5 inline-flex rounded-lg bg-[#202a39] px-4 py-2.5 text-[12px] font-bold text-white transition hover:bg-[#151d29]"
               >
                 ابدأ مجاناً
-              </a>
+              </Link>
 
               <p className="mt-4 text-[11px] text-white/65">
                 التعلم الذكي يبدأ من هنا — لا تنسَ بعد اليوم.
@@ -519,10 +529,7 @@ function FeatureCard({
   text: string;
 }) {
   return (
-    <a
-      href="#"
-      className="group min-h-[155px] rounded-[17px] border border-[#e7ddd4] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(40,35,30,0.07)]"
-    >
+    <div className="group min-h-[155px] rounded-[17px] border border-[#e7ddd4] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(40,35,30,0.07)]">
 
       <div
         className={`mb-5 flex h-10 w-10 items-center justify-center rounded-full ${iconStyle}`}
@@ -538,7 +545,7 @@ function FeatureCard({
         {text}
       </p>
 
-    </a>
+    </div>
   );
 }
 
