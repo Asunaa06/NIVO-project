@@ -23,7 +23,7 @@ export default function HomePage() {
           NAVBAR
       ===================================================== */}
 
-      <header className="border-b border-[#eadfd4] bg-[#fcf5ee]">
+      <header className="sticky top-0 z-50 border-b border-[#eadfd4] bg-[#fcf5ee]/95 backdrop-blur">
         <div className="mx-auto flex h-[64px] max-w-[1400px] items-center justify-between px-5">
 
           {/* Logo */}
@@ -246,7 +246,6 @@ export default function HomePage() {
 
           {/* أدراج ليتر */}
           <FeatureCard
-            href="/dashboard"
             icon={<Layers3 size={19} />}
             iconStyle="bg-[#eee9ff] text-[#8269c3]"
             title="أدراج ليتر"
@@ -256,7 +255,6 @@ export default function HomePage() {
 
           {/* المراجعة المتباعدة */}
           <FeatureCard
-            href="/dashboard"
             icon={<RefreshCw size={19} />}
             iconStyle="bg-[#fff0e6] text-[#df762f]"
             title="المراجعة المتباعدة"
@@ -266,7 +264,6 @@ export default function HomePage() {
 
           {/* المنظم الذكي */}
           <FeatureCard
-            href="/planner"
             icon={<CalendarDays size={19} />}
             iconStyle="bg-[#fff0e6] text-[#d99465]"
             title="المنظم الذكي"
@@ -276,7 +273,6 @@ export default function HomePage() {
 
           {/* مديرة الموارد */}
           <FeatureCard
-            href="/city"
             icon={<BarChart3 size={19} />}
             iconStyle="bg-[#e6f5ed] text-[#4d9b6e]"
             title="مديرة الموارد"
@@ -286,7 +282,6 @@ export default function HomePage() {
 
           {/* تقييم المصادر */}
           <FeatureCard
-            href="/lesson"
             icon={<Award size={19} />}
             iconStyle="bg-[#e6f5ed] text-[#4d9b6e]"
             title="تقييم المصادر"
@@ -296,7 +291,6 @@ export default function HomePage() {
 
           {/* إحصائيات دقيقة */}
           <FeatureCard
-            href="/statistics"
             icon={<LineChart size={19} />}
             iconStyle="bg-[#eee9ff] text-[#8269c3]"
             title="إحصائيات دقيقة"
@@ -338,28 +332,24 @@ export default function HomePage() {
           <div className="mt-10 grid grid-cols-4 gap-4">
 
             <MethodCard
-              href="/city"
               number="1"
               title="ادرس الدرس"
               text="ابدأ درساً من مديرة المواد، وسجل وقت دراستك بالمؤقت الذكي."
             />
 
             <MethodCard
-              href="/lesson"
               number="2"
               title="قيّم إتقانك"
               text="بعد المراجعة، حدد سهل، متوسط، أو صعب — لضبط الجدولة القادمة."
             />
 
             <MethodCard
-              href="/dashboard"
               number="3"
               title="انتقل بين الأدراج"
               text="يرتفع الدرس درجة عند النجاح، فتتباعد المراجعات: 1، 2، 4، 7، 14، 30، 60 يوماً."
             />
 
             <MethodCard
-              href="/statistics"
               number="4"
               title="لن تنسى أبداً"
               text="تثبت المعلومات في الذاكرة طويلة المدى قبل موعد البكالوريا بأمان."
@@ -528,23 +518,18 @@ function Stat({
 ========================================================= */
 
 function FeatureCard({
-  href,
   icon,
   iconStyle,
   title,
   text,
 }: {
-  href: string;
   icon: React.ReactNode;
   iconStyle: string;
   title: string;
   text: string;
 }) {
   return (
-    <Link
-      href={href}
-      className="group block min-h-[155px] rounded-[17px] border border-[#e7ddd4] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-[#df762f] hover:shadow-[0_12px_35px_rgba(40,35,30,0.07)]"
-    >
+    <div className="group min-h-[155px] rounded-[17px] border border-[#e7ddd4] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(40,35,30,0.07)]">
 
       <div
         className={`mb-5 flex h-10 w-10 items-center justify-center rounded-full ${iconStyle}`}
@@ -560,7 +545,7 @@ function FeatureCard({
         {text}
       </p>
 
-    </Link>
+    </div>
   );
 }
 
@@ -570,21 +555,16 @@ function FeatureCard({
 ========================================================= */
 
 function MethodCard({
-  href,
   number,
   title,
   text,
 }: {
-  href: string;
   number: string;
   title: string;
   text: string;
 }) {
   return (
-    <Link
-      href={href}
-      className="block min-h-[170px] rounded-[15px] border border-white/[0.08] bg-[#2b3545] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#e77b31]/60 hover:bg-[#333e51]"
-    >
+    <div className="min-h-[170px] rounded-[15px] border border-white/[0.08] bg-[#2b3545] p-5">
 
       <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-[#e77b31] text-[13px] font-black">
         {number}
@@ -598,7 +578,7 @@ function MethodCard({
         {text}
       </p>
 
-    </Link>
+    </div>
   );
 }
 
