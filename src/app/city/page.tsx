@@ -15,6 +15,12 @@ export default function CityPage() {
   useEffect(() => {
     const supabase = createClient()
 
+    if (!supabase) {
+      setLoading(false)
+      setSubjects([])
+      return
+    }
+
     async function load() {
       try {
         const result = await fetchCityData(supabase)

@@ -16,8 +16,15 @@ export default function SettingsPage() {
   useEffect(() => {
     const supabase = createClient()
 
+    if (!supabase) {
+      setLoading(false)
+      return
+    }
+
+    const client = supabase as NonNullable<typeof supabase>
+
     async function checkAuth() {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await client.auth.getUser()
       if (!user) {
         router.push("/login")
         return
@@ -30,6 +37,10 @@ export default function SettingsPage() {
 
   async function handleLogout() {
     const supabase = createClient()
+    if (!supabase) {
+      router.push("/")
+      return
+    }
     await supabase.auth.signOut()
     router.push("/")
   }

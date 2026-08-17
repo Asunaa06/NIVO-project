@@ -136,14 +136,18 @@ export default function SubscriptionPage() {
 
               <ul className="mt-6 flex-1 space-y-3 text-right">
                 {plan.perks.map((perk) => (
-                  <li key={perk} className="flex items-start justify-end gap-2 text-right">
-                    <span className={plan.featured ? "text-white/90" : "text-[#6f6559]"}>{perk}</span>
+                  <li
+                    key={perk}
+                    className="flex items-center gap-3 text-right"
+                    dir="rtl"
+                  >
                     <Check
                       className={[
-                        "mt-1 h-4 w-4 shrink-0",
+                        "mt-0 h-4 w-4 shrink-0",
                         plan.featured ? "text-[#d9752e]" : "text-[#d9752e]",
                       ].join(" ")}
                     />
+                    <span className={plan.featured ? "text-white/90" : "text-[#6f6559]"}>{perk}</span>
                   </li>
                 ))}
               </ul>

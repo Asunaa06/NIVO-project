@@ -30,8 +30,15 @@ export default function ProfilePage() {
   useEffect(() => {
     const supabase = createClient()
 
+    if (!supabase) {
+      setLoading(false)
+      return
+    }
+
+    const client = supabase as NonNullable<typeof supabase>
+
     async function checkAuth() {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await client.auth.getUser()
       if (!user) {
         router.push("/login")
         return

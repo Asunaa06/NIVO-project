@@ -34,6 +34,12 @@ export default function DashboardPage() {
   useEffect(() => {
     const supabase = createClient()
 
+    if (!supabase) {
+      setError("بيانات Supabase غير مهيأة بعد. الرجاء إعداد المتغيرات البيئية.")
+      setLoading(false)
+      return
+    }
+
     async function load() {
       try {
         const result = await fetchDashboardData(supabase)
@@ -60,8 +66,8 @@ export default function DashboardPage() {
 
     const completed = data.progress.filter((item) => item.completed).length
     const due = data.progress.filter((item) => !item.completed || (item.next_review_date && new Date(item.next_review_date) <= new Date())).length
-    const streak = data.profile?.streak_days ?? 0
-    const goal = data.profile?.target_goal ?? 0
+    const streak = data.profile?.current_streak ?? 0
+    const goal = 0
 
     return {
       completed,

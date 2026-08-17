@@ -17,11 +17,6 @@ const navItems = [
     icon: Map,
   },
   {
-    label: "غرفة الدرس",
-    href: "/lesson",
-    icon: BookOpen,
-  },
-  {
     label: "المُنظّم",
     href: "/planner",
     icon: CalendarDays,
@@ -44,6 +39,10 @@ export function Sidebar() {
 
   async function handleLogout() {
     const supabase = createClient()
+    if (!supabase) {
+      router.push("/")
+      return
+    }
     await supabase.auth.signOut()
     router.push("/")
   }

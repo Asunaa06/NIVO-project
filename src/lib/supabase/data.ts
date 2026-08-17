@@ -3,10 +3,10 @@ import { createClient } from "@/lib/supabase/client"
 export type ProfileRecord = {
   id?: string
   full_name?: string
-  target_goal?: number
-  streak_days?: number
-  branch?: string
   avatar_url?: string
+  current_streak?: number
+  last_study_date?: string
+  branch?: string
   onboarding_completed?: boolean
   [key: string]: unknown
 }
@@ -26,9 +26,14 @@ export type LessonRecord = {
   subject_id: string
   title: string
   order_index?: number
+  content?: string
+  review_method?: string
   bac_frequency?: number
   anki_cards_count?: number
+  anki_count?: number
   anki_link?: string
+  bac_appearances?: number
+  bac_years?: string[]
   [key: string]: unknown
 }
 
@@ -38,6 +43,38 @@ export type LessonProgressRecord = {
   completed: boolean
   next_review_date?: string
   box_level?: number
+  level?: number
+  [key: string]: unknown
+}
+
+export type ResourceRecord = {
+  id: string
+  lesson_id: string
+  title: string
+  description?: string
+  link?: string
+  created_by?: string
+  upvotes?: number
+  created_at?: string
+  [key: string]: unknown
+}
+
+export type ResourceRecord = {
+  id: string
+  lesson_id: string
+  title: string
+  description?: string
+  link?: string
+  created_by?: string
+  upvotes?: number
+  created_at?: string
+  [key: string]: unknown
+}
+
+export type TipRecord = {
+  id: string
+  text: string
+  created_at?: string
   [key: string]: unknown
 }
 
@@ -68,8 +105,18 @@ async function safeSelect<T>(
 }
 
 export async function fetchDashboardData(
-  supabase: ReturnType<typeof createClient>
+  supabase: ReturnType<typeof createClient> | null
 ): Promise<DashboardData> {
+  if (!supabase) {
+    return {
+      user: null,
+      profile: null,
+      subjects: [],
+      lessons: [],
+      progress: [],
+    }
+  }
+
   const {
     data: { user },
     error: authError,
@@ -133,7 +180,11 @@ export async function fetchDashboardData(
   }
 }
 
-export async function fetchCityData(supabase: ReturnType<typeof createClient>) {
+export async function fetchCityData(supabase: ReturnType<typeof createClient> | null) {
+  if (!supabase) {
+    return { user: null, subjects: [] }
+  }
+
   const {
     data: { user },
     error,
@@ -156,9 +207,13 @@ export async function fetchCityData(supabase: ReturnType<typeof createClient>) {
 }
 
 export async function fetchSubjectData(
-  supabase: ReturnType<typeof createClient>,
+  supabase: ReturnType<typeof createClient> | null,
   subjectId: string
 ) {
+  if (!supabase) {
+    return { user: null, subject: null, lessons: [], progress: [] }
+  }
+
   const {
     data: { user },
     error,

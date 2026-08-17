@@ -88,14 +88,17 @@
   * {
     border-color: var(--border);
   }
-  
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--background);
     color: var(--foreground);
   }
 }
 
-/* قسم هيرو تعديل */
 @layer utilities {
   .animate-float {
     animation: float 3s ease-in-out infinite;

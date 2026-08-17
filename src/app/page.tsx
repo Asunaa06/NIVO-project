@@ -1,75 +1,136 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   Award,
   BarChart3,
   CalendarDays,
+  Camera,
   Flame,
+  Globe,
   Layers3,
   LineChart,
+  Mail,
+  Music2,
   RefreshCw,
   Sparkles,
   Target,
 } from "lucide-react";
 
+const faqItems = [
+  {
+    question: "ما هو Nivo؟",
+    answer:
+      "Nivo هو منصة تعليمية ذكية تجمع بين المراجعة المتباعدة، التدرّج في مستويات المعرفة، والمنهجية العلمية لتحسين التثبيت طويل المدى.",
+  },
+  {
+    question: "هل المنصة مناسبة لطلاب بكالوريا 2027؟",
+    answer:
+      "نعم، تم تصميمها خصيصاً لمتابعة شعبة تسيير واقتصاد، مع تنظيم موادك ومراجعاتك وفق احتياجك اليومي وهدفك النهائي.",
+  },
+  {
+    question: "هل يمكن متابعة التقدم بشكل شخصي؟",
+    answer:
+      "نعم، تقدمك يُتابع عبر إحصائيات المواد، السلاسل اليومية، وأدراج ليتر التي تُظهر مستوى إتقانك في كل درس.",
+  },
+  {
+    question: "هل أستطيع البدء الآن؟",
+    answer:
+      "بكل تأكيد، يمكنك إنشاء حسابك والبدء فوراً في رحلتك التعليمية، أو الاستكشاف أولاً عبر الصفحة الرئيسية.",
+  },
+];
+
+const socialLinks = [
+  { href: "https://facebook.com", label: "Facebook", icon: Globe },
+  { href: "https://instagram.com", label: "Instagram", icon: Camera },
+  { href: "https://tiktok.com", label: "TikTok", icon: Music2 },
+  { href: "mailto:hello@nivo.app", label: "Gmail", icon: Mail },
+];
+
+const testimonials = [
+  {
+    name: "سارة ب.",
+    role: "طالبة علمي",
+    quote: "Nivo غير طريقة مذاكرتي تمامًا، أصبحت أراجع بانتظام وبدون ضغط.",
+    avatar: "س",
+  },
+  {
+    name: "محمّد ك.",
+    role: "طالب بكالوريا",
+    quote: "المنهجية واضحة جدًا، والمراجعات تُرجع المعلومات إلى الذاكرة بشكل فعلي.",
+    avatar: "م",
+  },
+  {
+    name: "أمينة ر.",
+    role: "طالبة اقتصاد",
+    quote: "أحببت السلاسل والشارات، فهي تجعلني أستمر دون أن أمل من الدراسة.",
+    avatar: "أ",
+  },
+  {
+    name: "يوسف ل.",
+    role: "طالب رياضيات",
+    quote: "أدراج لايتنر ساعدتني جدًا على تنظيم دروسي بذكاء وتحديد أولويات المراجعة.",
+    avatar: "ي",
+  },
+];
+
 export default function HomePage() {
+  const [studentCount, setStudentCount] = useState(0);
+
+  useEffect(() => {
+    let current = 0;
+    const interval = setInterval(() => {
+      current += 5;
+      setStudentCount((prev) => {
+        const nextValue = Math.min(current, 230);
+        if (nextValue >= 230) {
+          clearInterval(interval);
+        }
+        return nextValue;
+      });
+    }, 30);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <main
-      dir="rtl"
-      className="min-h-screen bg-[#fcf5ee] text-[#202737]"
-    >
+    <main dir="rtl" className="min-h-screen bg-[#fcf5ee] text-[#202737]">
       {/* =====================================================
           NAVBAR
       ===================================================== */}
 
-      <header className="border-b border-[#eadfd4] bg-[#fcf5ee]">
+      <header className="sticky top-0 z-50 border-b border-[#eadfd4]/80 bg-[#fcf5ee]/80 backdrop-blur-xl">
         <div className="mx-auto flex h-[64px] max-w-[1400px] items-center justify-between px-5">
-
-          {/* Logo */}
           <a href="#" className="flex items-center gap-2">
             <span className="text-[20px] font-black">Nivo</span>
-
             <span className="flex h-[27px] w-[27px] items-center justify-center rounded-full bg-[#df762f] text-[14px] font-black text-white">
               N
             </span>
           </a>
 
-          {/* Navigation */}
           <nav className="flex items-center gap-7 text-[14px] text-[#77736e]">
-
-            <a href="#" className="transition hover:text-[#202737]">
+            <a href="#features" className="transition hover:text-[#202737]">
               المميزات
             </a>
-
-            <a href="#" className="transition hover:text-[#202737]">
+            <a href="#method" className="transition hover:text-[#202737]">
               المنهجية
             </a>
-
-            <a href="#" className="transition hover:text-[#202737]">
+            <a href="#gamification" className="transition hover:text-[#202737]">
               التحفيز
             </a>
-
           </nav>
 
-          {/* Actions */}
           <div className="flex items-center gap-4">
-
-            <a
-              href="/login"
-              className="text-[13px] font-medium text-[#55514d]"
-            >
+            <a href="/login" className="text-[13px] font-medium text-[#55514d]">
               تسجيل الدخول
             </a>
-
             <a
               href="/subscription"
-              className="rounded-full bg-[#df762f] px-4 py-2 text-[12px] font-bold text-white"
+              className="rounded-full bg-[#df762f] px-4 py-2 text-[12px] font-bold text-white transition hover:brightness-110"
             >
               ابدأ الآن
             </a>
-
           </div>
-
         </div>
       </header>
 
@@ -138,23 +199,11 @@ export default function HomePage() {
 
 
             {/* Stats */}
-            <div className="mt-7 flex items-center justify-start gap-8">
-
-              <Stat
-                label="خوارزمية المراجعة"
-                value="SM-2"
-              />
-
-              <Stat
-                label="أدراج ليتر"
-                value="7 مستويات"
-              />
-
-              <Stat
-                label="مواد الشعبة"
-                value="10 مواد"
-              />
-
+            <div className="mt-7 flex flex-wrap items-center justify-start gap-5">
+              <Stat label="خوارزمية المراجعة" value="SM-2" />
+              <Stat label="أدراج لايتنر" value="7 مستويات" />
+              <Stat label="مواد الشعبة" value="10 مواد" />
+              <Stat label="الطلاب الموثوقون" value={`${studentCount} طالبًا`} />
             </div>
 
           </div>
@@ -180,31 +229,16 @@ export default function HomePage() {
 
               {/* Floating top badge */}
 
-              <div className="absolute -right-[3px] -top-[10px] flex items-center gap-2 rounded-lg border border-[#e9dfd6] bg-white px-3 py-2 text-[11px] font-bold shadow-[0_7px_20px_rgba(40,35,30,0.12)]">
-
-                <Sparkles
-                  size={12}
-                  className="text-[#8269c3]"
-                />
-
+              <div className="animate-float absolute -right-[3px] -top-[10px] flex items-center gap-2 rounded-lg border border-[#e9dfd6] bg-white px-3 py-2 text-[11px] font-bold shadow-[0_7px_20px_rgba(40,35,30,0.12)]">
+                <Sparkles size={12} className="text-[#8269c3]" />
                 مراجعة ذكية
-
               </div>
-
 
               {/* Floating bottom badge */}
 
-              <div className="absolute -bottom-3 left-[8px] flex items-center gap-2 rounded-lg border border-[#e9dfd6] bg-white px-3 py-2 shadow-[0_7px_20px_rgba(40,35,30,0.12)]">
-
-                <Flame
-                  size={13}
-                  className="text-[#df762f]"
-                />
-
-                <span className="text-[11px] font-bold">
-                  سلسلة 12 يوم
-                </span>
-
+              <div className="animate-float absolute -bottom-3 left-[8px] flex items-center gap-2 rounded-lg border border-[#e9dfd6] bg-white px-3 py-2 shadow-[0_7px_20px_rgba(40,35,30,0.12)]" style={{ animationDelay: "0.8s" }}>
+                <Flame size={13} className="text-[#df762f]" />
+                <span className="text-[11px] font-bold">سلسلة 12 يوم</span>
               </div>
 
             </div>
@@ -215,6 +249,32 @@ export default function HomePage() {
 
       </section>
 
+      <section className="mx-auto max-w-[1400px] px-5 pb-[100px]">
+        <div className="mb-8 text-center">
+          <p className="text-sm font-black text-[#df762f]">آراء الطلاب</p>
+          <h2 className="mt-2 text-[34px] font-black leading-tight text-[#242b38]">
+            شهادات حقيقية من رحلتهم مع Nivo
+          </h2>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {testimonials.map((item) => (
+            <div key={item.name} className="rounded-[24px] border border-[#e8dccb] bg-white p-5 shadow-sm">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#fff0e6] text-lg font-black text-[#df762f]">
+                  {item.avatar}
+                </div>
+                <div>
+                  <p className="text-sm font-black text-[#242b38]">{item.name}</p>
+                  <p className="text-[11px] text-[#6f6559]">{item.role}</p>
+                </div>
+              </div>
+
+              <p className="text-[14px] leading-7 text-[#5d5752]">“{item.quote}”</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* =====================================================
           FEATURES
@@ -302,7 +362,7 @@ export default function HomePage() {
           SCIENTIFIC METHOD
       ===================================================== */}
 
-      <section className="bg-[#222c3b] px-5 py-[70px] text-white">
+      <section id="method" className="bg-[#222c3b] px-5 py-[70px] text-white">
 
         <div className="mx-auto max-w-[1400px]">
 
@@ -359,7 +419,7 @@ export default function HomePage() {
           GAMIFICATION / CTA
       ===================================================== */}
 
-      <section className="mx-auto max-w-[1400px] px-5 py-[75px]">
+      <section id="gamification" className="mx-auto max-w-[1400px] px-5 py-[75px]">
 
         <div className="grid grid-cols-2 items-center gap-[70px]">
 
@@ -454,23 +514,58 @@ export default function HomePage() {
 
 
       {/* =====================================================
-          FOOTER
+          FAQ + SOCIALS
       ===================================================== */}
 
       <footer className="border-t border-[#eadfd4] bg-white">
+        <div className="mx-auto max-w-[1400px] px-5 py-14">
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+            <div>
+              <p className="text-sm font-black text-[#df762f]">الأسئلة الشائعة</p>
+              <h2 className="mt-3 text-[32px] font-black leading-tight text-[#242b38]">
+                كل ما تريد أن تعرفه عن Nivo
+              </h2>
+              <p className="mt-4 max-w-[520px] text-[14px] leading-7 text-[#6f6559]">
+                اكتشف كيف تجمع Nivo المراجعة الذكية، أداة التتبع، والخصائص التفاعلية في تجربة تعليمية واحدة تحقق الاستمرارية.
+              </p>
+            </div>
 
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-5">
+            <div className="space-y-3">
+              {faqItems.map((item) => (
+                <details key={item.question} open={item.question === faqItems[0].question} className="group rounded-2xl border border-[#e8dccb] bg-[#fcf5ee] p-4">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-right text-[14px] font-black text-[#242b38]">
+                    <span>{item.question}</span>
+                    <span className="rounded-full bg-white px-2 py-1 text-[#df762f] transition group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-3 text-[13px] leading-7 text-[#6f6559]">{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
 
-          <p className="text-[11px] text-[#77736e]">
-            © 2026 Nivo — منصة تعليمية لطلاب البكالوريا في الجزائر
-          </p>
+          <div className="mt-10 flex flex-col gap-5 border-t border-[#eadfd4] pt-7 text-center sm:flex-row sm:items-center sm:justify-between sm:text-right">
+            <div>
+              <p className="text-[11px] text-[#77736e]">
+                © 2026 Nivo — منصة تعليمية لطلاب البكالوريا في الجزائر
+              </p>
+            </div>
 
-          <p className="text-[13px] font-bold text-[#34302c]">
-            التعلم الذكي يبدأ من هنا.
-          </p>
-
+            <div className="flex items-center justify-center gap-3 sm:justify-end">
+              {socialLinks.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e8dccb] bg-white text-[#242b38] transition hover:border-[#df762f] hover:text-[#df762f]"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
-
       </footer>
 
     </main>
@@ -490,14 +585,9 @@ function Stat({
   value: string;
 }) {
   return (
-    <div className="text-right">
-      <p className="text-[10px] text-[#9a938d]">
-        {label}
-      </p>
-
-      <p className="mt-1 text-[18px] font-black">
-        {value}
-      </p>
+    <div className="min-w-[110px] text-right">
+      <p className="text-[10px] text-[#9a938d]">{label}</p>
+      <p className="mt-1 text-[18px] font-black leading-tight text-[#202737]">{value}</p>
     </div>
   );
 }
@@ -519,26 +609,15 @@ function FeatureCard({
   text: string;
 }) {
   return (
-    <a
-      href="#"
-      className="group min-h-[155px] rounded-[17px] border border-[#e7ddd4] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(40,35,30,0.07)]"
-    >
-
-      <div
-        className={`mb-5 flex h-10 w-10 items-center justify-center rounded-full ${iconStyle}`}
-      >
+    <div className="group min-h-[155px] cursor-default rounded-[17px] border border-[#e7ddd4] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(40,35,30,0.07)]">
+      <div className={`mb-5 flex h-10 w-10 items-center justify-center rounded-full ${iconStyle}`}>
         {icon}
       </div>
 
-      <h3 className="text-[18px] font-black">
-        {title}
-      </h3>
+      <h3 className="text-[18px] font-black">{title}</h3>
 
-      <p className="mt-3 text-[13px] leading-7 text-[#8b8580]">
-        {text}
-      </p>
-
-    </a>
+      <p className="mt-3 text-[13px] leading-7 text-[#8b8580]">{text}</p>
+    </div>
   );
 }
 
